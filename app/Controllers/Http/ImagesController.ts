@@ -1,6 +1,5 @@
 import { ResponsiveAttachment } from '@ioc:Adonis/Addons/ResponsiveAttachment'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Content from 'App/Models/Content'
 import Image from 'App/Models/Image'
 import CreateImageValidator from 'App/Validators/CreateImageValidator'
 import UpdateImageValidator from 'App/Validators/UpdateImageValidator'
