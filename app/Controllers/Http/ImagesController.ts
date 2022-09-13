@@ -1,5 +1,6 @@
 import { ResponsiveAttachment } from '@ioc:Adonis/Addons/ResponsiveAttachment'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Content from 'App/Models/Content'
 import Image from 'App/Models/Image'
 import CreateImageValidator from 'App/Validators/CreateImageValidator'
 import UpdateImageValidator from 'App/Validators/UpdateImageValidator'
@@ -55,5 +56,15 @@ export default class ImagesController {
   public async index({ response }: HttpContextContract) {
     const images = await Image.query()
     return response.ok(images)
+  }
+
+  public async urls({ response }: HttpContextContract) {
+    const posts = await Image.all()
+    posts[0].imageXlMd.url // pre-computed
+    posts[0].imageXlMd.breakpoints.thumbnail.url // pre-computed
+    posts[0].imageXlMd.breakpoints.small.url // pre-computed
+    posts[0].imageXlMd.breakpoints.medium.url // pre-computed
+    posts[0].imageXlMd.breakpoints.large.url // pre-computed
+    posts[0].imageXlMd.urls // pre-computed
   }
 }
