@@ -58,13 +58,8 @@ export default class ImagesController {
     return response.ok(images)
   }
 
-  public async urls({ response }: HttpContextContract) {
-    const posts = await Image.all()
-    posts[0].imageXlMd.url // pre-computed
-    posts[0].imageXlMd.breakpoints.thumbnail.url // pre-computed
-    posts[0].imageXlMd.breakpoints.small.url // pre-computed
-    posts[0].imageXlMd.breakpoints.medium.url // pre-computed
-    posts[0].imageXlMd.breakpoints.large.url // pre-computed
-    posts[0].imageXlMd.urls // pre-computed
+  public async urls({ response, request }: HttpContextContract) {
+    const post = await Image.findOrFail('id', request.params().id)
+    return response.ok(post.imageXlMd?.getUrls)
   }
 }
