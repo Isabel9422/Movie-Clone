@@ -56,12 +56,4 @@ export default class ImagesController {
     const images = await Image.query()
     return response.ok(images)
   }
-
-  public async urls({ response }: HttpContextContract) {
-    const post = await Image.findOrFail(1)
-    const prueba = post.imageXlMd!.breakpoints!.thumbnail.name
-    post.imageXlMd!.breakpoints! // exists
-    if (prueba !== null) response.badRequest
-    response.ok(prueba)
-  }
 }
